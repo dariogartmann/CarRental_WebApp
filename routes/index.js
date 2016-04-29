@@ -49,5 +49,20 @@ router.get('/cars/:car', function(req, res) {
   res.json(req.car);
 });
 
+// DELETE /cars/:car
+//=================================================
+router.delete('/cars/:car', function(req, res) {
+    var query = Car.remove({ _id: req.car.id });
+    
+    if(query.exec()) {
+        res.send("success");
+    }else {
+        res.send("error");
+    }
+    
+});
+
+
+
 
 module.exports = router;
