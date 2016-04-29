@@ -28,9 +28,24 @@ router.post('/cars', function(req, res, next) {
   });
 });
 
+
 // preload cars
 //=================================================
-router.get('/posts/:car', function(req, res) {
+router.param('car', function(req, res, next, id) {
+  var query = Car.findById(id);
+
+  query.exec(function (err, car){
+    if (err) { return next(err); }
+    if (!car) { return next(new Error('can\'t find car')); }
+
+    req.car = car;
+    return next();
+  });
+});
+
+// GET /cars/:car
+//=================================================
+router.get('/cars/:car', function(req, res) {
   res.json(req.car);
 });
 
