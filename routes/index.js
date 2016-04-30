@@ -79,13 +79,19 @@ router.delete('/cars/:car', auth, function(req, res, next) {
 // AUTHENTICATION ROUTES
 //=================================================
 router.post('/register', function(req, res, next){
-    if(!req.body.username || !req.body.password){
+    if(!req.body.username || !req.body.password || !req.body.name || !req.body.mail || !req.body.address || !req.body.city || !req.body.country || !req.body.bankAccount ){
         return res.status(400).json({message: 'Please fill out all fields'});
     }
 
     var user = new User();
 
     user.username = req.body.username;
+    user.name = req.body.name;
+    user.mail = req.body.mail;
+    user.address = req.body.address;
+    user.city = req.body.city;
+    user.country = req.body.country;
+    user.isAdmin = false;
 
     user.setPassword(req.body.password)
 

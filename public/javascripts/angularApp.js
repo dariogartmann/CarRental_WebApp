@@ -8,7 +8,7 @@ function($stateProvider, $urlRouterProvider) {
     $stateProvider
     .state('home', {
         url: '/home',
-        templateUrl: '/home.html',
+        templateUrl: '/partials/dashboard.html',
         controller: 'CarController',
         resolve: {
             postPromise: ['cars', function(cars){
@@ -18,7 +18,7 @@ function($stateProvider, $urlRouterProvider) {
     })
     .state('login', {
         url: '/login',
-        templateUrl: '/login.html',
+        templateUrl: '/partials/login.html',
         controller: 'AuthCtrl',
         onEnter: ['$state', 'auth', function($state, auth){
             if(auth.isLoggedIn()){
@@ -28,7 +28,7 @@ function($stateProvider, $urlRouterProvider) {
     })
     .state('register', {
         url: '/register',
-        templateUrl: '/register.html',
+        templateUrl: '/partials/register.html',
         controller: 'AuthCtrl',
         onEnter: ['$state', 'auth', function($state, auth){
             if(auth.isLoggedIn()){
@@ -71,9 +71,8 @@ app.factory('cars', ['$http', 'auth', function($http, auth){
     };
 
     return o;
-}]);
-
-app.factory('auth', ['$http', '$window', function($http, $window){
+}])
+.factory('auth', ['$http', '$window', function($http, $window){
    var auth = {};
 
     auth.saveToken = function (token){
@@ -122,7 +121,7 @@ app.factory('auth', ['$http', '$window', function($http, $window){
     };
     
     return auth;
-}])
+}]);
 
 
 
@@ -148,7 +147,6 @@ function($scope, cars){
         cars.delete(car);
     }
 }])
-
 .controller('AuthCtrl', [
 '$scope',
 '$state',

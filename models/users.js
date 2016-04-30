@@ -11,6 +11,7 @@ var UserSchema = new mongoose.Schema({
     bankAccount: String,
     address: String,
     city: String,
+    country: String,
     isAdmin: Boolean,
 });
 

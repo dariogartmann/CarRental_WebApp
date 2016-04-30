@@ -2,7 +2,10 @@
 
 html {
     font-family: 'Open Sans', sans-serif;
-    background-color: #00CDFF;
+    background-color: #FFF;
+        
+    width: 100%;
+    height: 100%;
 }
 
 .centered {
@@ -10,4 +13,74 @@ html {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+}
+
+.alert {
+    width: 100%;
+    padding: 15px 25px;
+    color: #FFF;
+    background-color: #BF0100;
+    border: 1px solid #7F0100;
+    border-radius: 4px;
+
+    display: block;
+    position: absolute;
+    margin: 10px 0;
+}
+hr {
+    max-width: 150px;
+    
+}
+
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;    
+    background-color: #FFF;
+    z-index: 30;
+    border-bottom: 1px solid #DBDBDB;
+}
+nav h4 { line-height: 60px; }
+nav ul li { display: inline-block; }
+nav div.container {
+    max-height: 60px;
+}
+
+.content {
+    margin-top: 60px;
+}
+
+footer {
+    color: #DBDBDB;
+    border-top: #DBDBDB;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    position: fixed;
+}
+
+section.module {
+    padding: 100px 0;
+}
+
+section.module.gray {
+    background-color: #DBDBDB;
+}
+
+section.module#login {
+    background-image: url("../images/login_header.jpg");
+    background-attachment: scroll;
+    background-size: cover;
+    background-position: center;
+    padding: 0;
+    height: calc(100% - 60px);
+    width: 100%;
+}
+
+section.module#register input, section.module#register button {
+    width: 100%;
 }

@@ -1,0 +1,51 @@
+<section class="module" id="register">
+    <div class="container">
+        <div ng-show="error" class="alert">
+            <span>{{ error.message }}</span>
+        </div>
+    </div>
+    <div class="container">
+        <form ng-submit="register()">
+            <div class="row">
+                <div class="twelve columns">
+                    <h3>Register</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="six columns">
+                    <input type="text" placeholder="Username" ng-model="user.username" required/>
+                </div>
+                <div class="six columns">
+                    <input type="password" placeholder="Password" ng-model="user.password" required/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="six columns">
+                    <input type="text" placeholder="Name" ng-model="user.name" required />
+                </div>
+                <div class="six columns">
+                    <input type="email" placeholder="Mailaddress" ng-model="user.mail" required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="six columns">
+                    <input type="text" placeholder="Address" ng-model="user.address" required />
+                </div>
+                <div class="three columns">
+                    <input type="text" placeholder="City" ng-model="user.city" required />
+                </div>
+                <div class="three columns">
+                    <input type="text" placeholder="Country" ng-model="user.country" required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="eight columns">
+                    <input type="text" placeholder="Credit card number" ng-model="user.bankAccount" required />
+                </div>
+                <div class="four columns">
+                    <button type="submit" class="button-primary">Register</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
