@@ -1,4 +1,13 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
 
 html {
-    background-color: red;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #00CDFF;
+}
+
+.centered {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }

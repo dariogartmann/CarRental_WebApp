@@ -6,10 +6,14 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var passport = require('passport');
 var app = express();
 
 // db get models and connect
-require('./models/cars.js');
+require('./models/Cars');
+require('./models/Users'); // user model last
+
+require('./config/passport');
 
 mongoose.connect('mongodb://localhost/carrental');
 
@@ -29,6 +33,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(passport.initialize());
 
 app.use('/', routes);
 app.use('/cars', routes);
