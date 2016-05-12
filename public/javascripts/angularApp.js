@@ -8,7 +8,13 @@ function($stateProvider, $urlRouterProvider) {
     $stateProvider
     .state('dashboard', {
         url: '/dashboard',
-        templateUrl: '/partials/dashboard.html'
+        templateUrl: '/partials/dashboard.html',
+        controller: 'DashboardController',
+        onEnter: ['$state', 'auth', function($state, auth){
+            if(!auth.isLoggedIn()){
+                $state.go('login');
+            }
+        }]
     })
     .state('login', {
         url: '/login',
@@ -141,6 +147,7 @@ function($scope, cars){
         cars.delete(car);
     }
 }])
+.controller('DashboardController', ['$scope', 'auth'])
 .controller('AuthCtrl', [
 '$scope',
 '$state',
