@@ -157,7 +157,9 @@ function($scope, cars){
         cars.delete(car);
     }
 }])
-.controller('DashboardController', ['$scope', 'auth'])
+.controller('DashboardController', ['$scope', 'auth', function($scope) {
+    // nothing here 
+}])
 .controller('AuthCtrl', [
 '$scope',
 '$state',

@@ -1,3 +1,16 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+<html>
+    <head>
+        <title>Error • Car Rental</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Dario Gartmann, Michael Mattle"/>
+        
+        <link rel="stylesheet" href="/stylesheets/normalize.css" />
+        <link rel="stylesheet" href="/stylesheets/skeleton.css" />
+        <link rel="stylesheet" href="/stylesheets/style.css" />
+    </head>
+    <body>
+        <h1><%= message %></h1>
+        <h2><%= error.status %></h2>
+        <pre><%= error.stack %></pre>
+    </body>
+</html>
