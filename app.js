@@ -11,6 +11,7 @@ var app = express();
 
 // db get models and connect
 require('./models/Cars');
+require('./models/Reservations')
 require('./models/Users'); // user model last
 
 require('./config/passport');
@@ -19,8 +20,7 @@ mongoose.connect('mongodb://localhost/carrental');
 
 // routes
 var routes = require('./routes/index');
-var users = require('./routes/users');
-
+var auth_routes = require('./routes/auth');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -35,10 +35,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 
+// assign routes to route files
 app.use('/', routes);
-app.use('/cars', routes);
-app.use('/users', users);
-
+app.use('/', auth_routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

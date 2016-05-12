@@ -16,6 +16,16 @@ function($stateProvider, $urlRouterProvider) {
             }
         }]
     })
+    .state('cars', {
+        url: '/cars',
+        templateUrl: '/partials/cars.html',
+        controller: 'CarController',
+          resolve: {
+            postPromise: ['cars', function(cars){
+                return cars.getAll();
+            }]
+        }
+    })    
     .state('login', {
         url: '/login',
         templateUrl: '/partials/login.html',

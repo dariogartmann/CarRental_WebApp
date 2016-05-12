@@ -101,6 +101,7 @@ nav {
     height: 60px;
     line-height: 60px;    
     z-index: 30;
+    background-color: #FFF;
     border-bottom: 1px solid #DBDBDB;
 }
 nav h4 { line-height: 60px; }

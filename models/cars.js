@@ -7,4 +7,4 @@ var CarSchema = new mongoose.Schema({
     isCurrentlyReserved: Boolean
 });
 
-mongoose.model('Car', CarSchema)
+mongoose.model('Car', CarSchema);

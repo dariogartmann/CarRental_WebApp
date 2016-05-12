@@ -1,0 +1,18 @@
+<section class="module gray">
+    <div class="container">
+        <form ng-submit="addCar()">
+            <input type="text" ng-model="title" placeholder="title" />
+            <input type="number" ng-model="pricePerDay" placeholder="number"/>
+            <button type="submit" class="button-primary">Create</button>
+        </form>
+    </div>
+</section>
+
+<section class="module light">
+    <div class="container">
+        <div ng-repeat="car in cars">
+            {{car.title}} - price: {{car.pricePerDay}}
+            <button ng-click="deleteCar(car)">Delete</button>
+        </div>
+    </div>
+</section>
