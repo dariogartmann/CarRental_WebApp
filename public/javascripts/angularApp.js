@@ -6,15 +6,9 @@ app.config([
 function($stateProvider, $urlRouterProvider) {
 
     $stateProvider
-    .state('home', {
-        url: '/home',
-        templateUrl: '/partials/dashboard.html',
-        controller: 'CarController',
-        resolve: {
-            postPromise: ['cars', function(cars){
-                return cars.getAll();
-            }]
-        }
+    .state('dashboard', {
+        url: '/dashboard',
+        templateUrl: '/partials/dashboard.html'
     })
     .state('login', {
         url: '/login',
@@ -22,7 +16,7 @@ function($stateProvider, $urlRouterProvider) {
         controller: 'AuthCtrl',
         onEnter: ['$state', 'auth', function($state, auth){
             if(auth.isLoggedIn()){
-                $state.go('home');
+                $state.go('dashboard');
             }
         }]
     })
@@ -32,12 +26,12 @@ function($stateProvider, $urlRouterProvider) {
         controller: 'AuthCtrl',
         onEnter: ['$state', 'auth', function($state, auth){
             if(auth.isLoggedIn()){
-                $state.go('home');
+                $state.go('dashboard');
             }
         }]
     });
 
-    $urlRouterProvider.otherwise('home');
+    $urlRouterProvider.otherwise('login');
 }]);
 
 app.factory('cars', ['$http', 'auth', function($http, auth){
@@ -158,7 +152,7 @@ function($scope, $state, auth){
         auth.register($scope.user).error(function(error){
             $scope.error = error;
         }).then(function(){
-            $state.go('home');
+            $state.go('dashboard');
         });
     };
 
@@ -166,7 +160,7 @@ function($scope, $state, auth){
         auth.logIn($scope.user).error(function(error){
             $scope.error = error;
         }).then(function(){
-            $state.go('home');
+            $state.go('dashboard');
         });
     };
 }])
