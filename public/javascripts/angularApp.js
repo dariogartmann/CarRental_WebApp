@@ -29,10 +29,10 @@ function($stateProvider, $urlRouterProvider) {
     .state('reservations', {
         url: '/reservations',
         templateUrl: '/partials/reservations.html',
-        controller: 'ReservationController',
+        controller: 'CarController',
         resolve: {
-            postPromise: ['reservations', function(reservations){
-                return reservations.getAll();
+            postPromise: ['cars', function(cars){
+                return cars.getAll();
             }]
         }
     })
@@ -182,11 +182,12 @@ function($scope, cars){
         cars.delete(car);
     }
 }])
-/*
-.controller('ReservationController', ['$scope', 'reservations', function($http, reservations) {
-    $scope.reservations = reservations.reservations;
+
+.controller('ReservationController', ['$scope', 'cars', function($http, cars) {
+    $scope.cars = cars.cars;
+    
 }])
-*/
+
 .controller('DashboardController', ['$scope', 'auth', function($scope) {
     // nothing here 
 }])
