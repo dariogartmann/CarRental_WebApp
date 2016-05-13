@@ -10,9 +10,9 @@ var passport = require('passport');
 var app = express();
 
 // db get models and connect
-require('./models/Cars');
-require('./models/Reservations')
-require('./models/Users'); // user model last
+require('./models/cars.js');
+require('./models/reservations.js')
+require('./models/users.js'); // user model last
 
 require('./config/passport');
 
