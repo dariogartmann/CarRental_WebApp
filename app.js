@@ -19,8 +19,9 @@ require('./config/passport');
 mongoose.connect('mongodb://localhost/carrental');
 
 // routes
-var routes = require('./routes/index');
-var auth_routes = require('./routes/auth');
+var routes = require('./routes/index.js');
+var auth_routes = require('./routes/auth.js');
+var reservation_routes = require('./routes/reservationRoutes.js');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -38,6 +39,7 @@ app.use(passport.initialize());
 // assign routes to route files
 app.use('/', routes);
 app.use('/', auth_routes);
+app.use('/', reservation_routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

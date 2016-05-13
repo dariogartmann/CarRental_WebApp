@@ -26,6 +26,16 @@ function($stateProvider, $urlRouterProvider) {
             }]
         }
     })    
+    .state('reservations', {
+        url: '/reservations',
+        templateUrl: '/partials/reservations.html',
+        controller: 'ReservationController',
+        resolve: {
+            postPromise: ['reservations', function(reservations){
+                return reservations.getAll();
+            }]
+        }
+    })
     .state('login', {
         url: '/login',
         templateUrl: '/partials/login.html',
@@ -57,8 +67,8 @@ app.factory('cars', ['$http', 'auth', function($http, auth){
     
     o.getAll = function() {
         return $http.get('/cars', {
-    headers: {Authorization: 'Bearer '+auth.getToken()}
-  }).success(function(data){
+            headers: {Authorization: 'Bearer '+auth.getToken()}
+        }).success(function(data){
             angular.copy(data, o.cars);
         });
     };
@@ -82,6 +92,21 @@ app.factory('cars', ['$http', 'auth', function($http, auth){
 
     return o;
 }])
+/*
+.factory('reservations', ['$http', 'auth', function($http, auth) {
+    var o = {
+        reservations: []
+    };
+    
+    o.getAll = function() {
+        return $http.get('/reservations', {
+            headers: { Authorization: 'Bearer'+auth.getToken()}
+        }).success(function(data) {
+            angular.copy(data, o.reservations);
+        });
+    };
+    
+}])*/
 .factory('auth', ['$http', '$window', function($http, $window){
    var auth = {};
 
@@ -157,6 +182,11 @@ function($scope, cars){
         cars.delete(car);
     }
 }])
+/*
+.controller('ReservationController', ['$scope', 'reservations', function($http, reservations) {
+    $scope.reservations = reservations.reservations;
+}])
+*/
 .controller('DashboardController', ['$scope', 'auth', function($scope) {
     // nothing here 
 }])

@@ -13,6 +13,7 @@ var UserSchema = new mongoose.Schema({
     city: String,
     country: String,
     isAdmin: Boolean,
+    reservations: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Reservation' }]
 });
 
 /* Set a password
