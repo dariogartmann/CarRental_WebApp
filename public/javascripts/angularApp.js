@@ -19,21 +19,31 @@ function($stateProvider, $urlRouterProvider) {
     .state('cars', {
         url: '/cars',
         templateUrl: '/partials/cars.html',
-        controller: 'CarController',
+        controller: 'CarCtrl',
           resolve: {
             postPromise: ['cars', function(cars){
                 return cars.getAll();
             }]
         }
     })    
-    .state('reservations', {
-        url: '/reservations',
-        templateUrl: '/partials/reservations.html',
-        controller: 'CarController',
+    .state('reservation_new', {
+        url: '/reservations/new',
+        templateUrl: '/partials/reservation_new.html',
+        controller: 'ReservationCtrl',
         resolve: {
             postPromise: ['cars', function(cars){
                 return cars.getAll();
             }]
+        }
+    })
+    .state('usersettings', {
+        url: '/usersettings',
+        templateUrl: '/partials/usersettings.html',
+        controller: 'UserCtrl',
+        resolve: {
+            postPromise: ['users', function(users){
+                return users.getCurrent();
+            }] 
         }
     })
     .state('login', {
@@ -59,6 +69,7 @@ function($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise('login');
 }]);
+
 
 app.factory('cars', ['$http', 'auth', function($http, auth){
     var o = {
@@ -92,7 +103,30 @@ app.factory('cars', ['$http', 'auth', function($http, auth){
 
     return o;
 }])
-/*
+.factory('users', ['$http', 'auth', function($http, auth) {
+    var o = {
+        users: []
+    };
+    
+    o.getAll = function() {
+        return $http.get('/reservations', {
+            headers: { Authorization: 'Bearer'+auth.getToken()}
+        }).success(function(data) {
+            angular.copy(data, o.users);
+        });
+    };
+    
+    o.getCurrent = function() {
+        return $http.get('/users/'+auth.getCurrent, {
+            headers: {Authorization: 'Bearer'+auth.getToken()}
+        }).success(function(data) {
+            angular.copy(data, o.users);
+        })
+    }
+    
+    return o;
+    
+}])
 .factory('reservations', ['$http', 'auth', function($http, auth) {
     var o = {
         reservations: []
@@ -106,7 +140,9 @@ app.factory('cars', ['$http', 'auth', function($http, auth){
         });
     };
     
-}])*/
+    return o;
+    
+}])
 .factory('auth', ['$http', '$window', function($http, $window){
    var auth = {};
 
@@ -156,69 +192,4 @@ app.factory('cars', ['$http', 'auth', function($http, auth){
     };
     
     return auth;
-}]);
-
-
-
-app.controller('CarController', [
-'$scope',
-'cars',
-function($scope, cars){
-    $scope.cars = cars.cars;
-    
-    $scope.addCar = function(){
-        if(!$scope.title || $scope.title === '') { return; }
-        if(!$scope.pricePerDay || $scope.pricePerDay === '' || $scope.pricePerDay < 0) { return; }
-        cars.create({
-            title: $scope.title,
-            pricePerDay: $scope.pricePerDay
-        });
-
-        $scope.title = '';
-        $scope.pricePerDay = '';
-    };
-    
-    $scope.deleteCar = function(car) {
-        cars.delete(car);
-    }
-}])
-
-.controller('ReservationController', ['$scope', 'cars', function($http, cars) {
-    $scope.cars = cars.cars;
-    
-}])
-
-.controller('DashboardController', ['$scope', 'auth', function($scope) {
-    // nothing here 
-}])
-.controller('AuthCtrl', [
-'$scope',
-'$state',
-'auth',
-function($scope, $state, auth){
-    $scope.user = {};
-
-    $scope.register = function(){
-        auth.register($scope.user).error(function(error){
-            $scope.error = error;
-        }).then(function(){
-            $state.go('dashboard');
-        });
-    };
-
-    $scope.logIn = function(){
-        auth.logIn($scope.user).error(function(error){
-            $scope.error = error;
-        }).then(function(){
-            $state.go('dashboard');
-        });
-    };
-}])
-.controller('NavCtrl', [
-'$scope',
-'auth',
-function($scope, auth){
-  $scope.isLoggedIn = auth.isLoggedIn;
-  $scope.currentUser = auth.currentUser;
-  $scope.logOut = auth.logOut;
 }]);

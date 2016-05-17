@@ -29,26 +29,26 @@ router.get('/reservations', auth, function(req, res, next) {
 // POST /reservations
 //=================================================
 router.post('/reservations', auth, function(req, res, next) {
-  var reservation = new Reservation(req.body);
+    var reservation = new Reservation(req.body);
 
-  reservation.save(function(err, post){
-    if(err){ return next(err); }
-
-    res.json(post);
-  });
+    reservation.save(function(err, post){
+        if(err){ return next(err); }
+        
+        res.json(post);
+    });
 });
 
 
 // preload reservations
 //=================================================
 router.param('reservations', function(req, res, next, id) {
-  var query = Reservation.findById(id);
+    var query = Reservation.findById(id);
 
-  query.exec(function (err, reservation){
-    if (err) { return next(err); }
-    if (!car) { return next(new Error('can\'t find reservation')); }
+    query.exec(function (err, reservation){
+        if (err) { return next(err); }
+        if (!car) { return next(new Error('can\'t find reservation')); }
 
-    req.reservation = reservation;
+        req.reservation = reservation;
     return next();
   });
 });
