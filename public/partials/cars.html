@@ -1,77 +1,64 @@
 <section class="module light" id="tempnew">
     <div class="container">
         <h3>New car</h3>
-        <div class="row">
-            <div class="twelve columns">
-                <input type="text" placeholder="Name" required />
-            </div>
-        </div>
-        <div class="row">
-            <div class="twelve columns">
-                <span>Image of car</span>
-                <input type="file" placeholder="Link to image" required />
-            </div>
-        </div>
-        <div class="row">
-            <div class="twelve columns">
-                <input type="text" placeholder="Brand" required />
-            </div>
-        </div>
-        <div class="row">
-            <div class="twelve columns">
-                <input type="text" placeholder="Model" required />
-            </div>
-        </div>
-        <div class="row">
-            <div class="twelve columns">
-                <input type="text" placeholder="Horse Power" required />
-            </div>
-        </div>
-        <div class="row">
-            <div class="twelve columns">
-                <input type="text" placeholder="Fuel consumption" required />
-            </div>
-        </div>
-        <div class="row">
-            <div class="twelve columns">
-                <input type="number" placeholder="Number of seats" required />
-            </div>
-        </div>
-                <div class="row">
-            <div class="twelve columns">
-                <input type="number" placeholder="Number of doors" required />
-            </div>
-        </div>
-        <div class="row">
-            <div class="twelve columns">
-                <input type="checkbox" placeholder="" required />
-                <p>Gear</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="twelve columns">
-               <button class="button-primary">Create car</button>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<section class="module gray">
-    <div class="container">
         <form ng-submit="addCar()">
-            <input type="text" ng-model="title" placeholder="title" />
-            <input type="number" ng-model="pricePerDay" placeholder="number"/>
-            <button type="submit" class="button-primary">Create</button>
+            <div class="row">
+                <div class="twelve columns">
+                    <input type="text" ng-model="title" placeholder="Name" required />
+                </div>
+            </div>
+             <div class="row">
+                <div class="twelve columns">
+                    <input type="text" ng-model="pricePerDay" placeholder="Price per day" required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="twelve columns">
+                    <span>Image of car</span>
+                    <input type="text" ng-model="image" placeholder="Link to image" required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="twelve columns">
+                    <input type="text" ng-model="brand" placeholder="Brand" required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="twelve columns">
+                    <input type="text" ng-model="model" placeholder="Model" required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="twelve columns">
+                    <input type="text" ng-model="horsePower" placeholder="Horse Power" required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="twelve columns">
+                    <input type="text" ng-model="fuelConsumption" placeholder="Fuel consumption per 100kmh" required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="twelve columns">
+                    <input type="number" ng-model="numberOfSeats" placeholder="Number of seats" required />
+                </div>
+            </div>
+                    <div class="row">
+                <div class="twelve columns">
+                    <input type="number" ng-model="numberOfDoors" placeholder="Number of doors" required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="twelve columns">
+                    <input type="checkbox" ng-model="isAutomatic" placeholder="" required />
+                    <p>Automatic Gear</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="twelve columns">
+                   <button class="button-primary" type="submit">Create car</button>
+                </div>
+            </div>
         </form>
-    </div>
-</section>
-
-<section class="module light">
-    <div class="container">
-        <div ng-repeat="car in cars">
-            {{car.title}} - price: {{car.pricePerDay}}
-            <button ng-click="deleteCar(car)">Delete car</button>
-        </div>
     </div>
 </section>

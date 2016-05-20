@@ -42,8 +42,8 @@ function($stateProvider, $urlRouterProvider) {
         controller: 'UserCtrl',
         resolve: {
             postPromise: ['users', function(users){
-                return users.getCurrent();
-            }] 
+                return users.getAll();
+            }]
         }
     })
     .state('login', {
@@ -105,23 +105,22 @@ app.factory('cars', ['$http', 'auth', function($http, auth){
 }])
 .factory('users', ['$http', 'auth', function($http, auth) {
     var o = {
-        users: []
+        users: [],
+        currentUser: null
     };
     
     o.getAll = function() {
-        return $http.get('/reservations', {
-            headers: { Authorization: 'Bearer'+auth.getToken()}
+        return $http.get('/users', {
+            headers: { Authorization: 'Bearer '+auth.getToken()}
         }).success(function(data) {
             angular.copy(data, o.users);
         });
     };
     
-    o.getCurrent = function() {
-        return $http.get('/users/'+auth.getCurrent, {
-            headers: {Authorization: 'Bearer'+auth.getToken()}
-        }).success(function(data) {
-            angular.copy(data, o.users);
-        })
+    for(var i = 0; i < o.users.length; i++) {
+        if(o.users[i].username == auth.getCurrent()) {
+            currentUser = users[i];
+        }
     }
     
     return o;
@@ -134,7 +133,7 @@ app.factory('cars', ['$http', 'auth', function($http, auth){
     
     o.getAll = function() {
         return $http.get('/reservations', {
-            headers: { Authorization: 'Bearer'+auth.getToken()}
+            headers: { Authorization: 'Bearer '+auth.getToken()}
         }).success(function(data) {
             angular.copy(data, o.reservations);
         });

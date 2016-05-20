@@ -1,0 +1,22 @@
+<section class="module light">
+    <div class="container">
+        <p> {{current}}</p>
+        
+        <div ng-repeat="user in users">
+            <div style="background-color: aqua; margin: 10px; float: left;">
+                <p>{{user.username}}</p>    
+                <p>{{user.name}}</p>    
+                <p>{{user.mail}}</p>    
+                <p>{{user.bankAccount}}</p>    
+                <p>{{user.address}}</p>    
+                <p>{{user.city}}</p>    
+                <p>{{user.country}}</p>    
+                <p>{{user.IsAdmin}}</p>    
+            </div>
+                
+            
+        </div>
+        
+        <h1>{{current}}</h1>
+    </div>
+</section>
