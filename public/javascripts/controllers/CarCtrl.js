@@ -13,7 +13,6 @@ function($scope, cars){
         if(!$scope.fuelConsumption || $scope.fuelConsumption === '' || $scope.fuelConsumption < 0) { return; }
         if(!$scope.numberOfDoors || $scope.numberOfDoors === '') { return; }
         if(!$scope.numberOfSeats || $scope.numberOfSeats === '') { return; }
-        if(!$scope.isAutomatic || $scope.isAutomatic === '') { return; }
         if(!$scope.pricePerDay || $scope.pricePerDay === '' || $scope.pricePerDay < 0) { return; }
         
         

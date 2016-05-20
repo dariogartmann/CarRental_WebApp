@@ -6,7 +6,7 @@
             <div class="car_container">
                 <div class="row">
                     <div class="four columns">
-                        <img src="{{car.image}}" alt="{{car.title}}"/>
+                        <img ng-src="{{car.image}}" alt="{{car.title}}"/>
                     </div>
                     <div class="six columns">
                         <h4>
@@ -15,8 +15,6 @@
                         <p>{{car.brand}} {{car.model}} • Seats: {{car.numberOfSeats}} • Doors: {{car.numberOfDoors}}</p>
                         
                         <div ng-show="{{car.isAutomatic}}"><i class="fa fa-cogs"></i> This car has automatic gear</div>   
-                        <!-- 
-                        <a ng-href="/#/reservations/new/{{car._id}}" class="button-primary">Reserve this car</a> -->               
                         
                         <a ui-sref="reservation_finish({id: car._id})" class="button-primary">Reserve this car</a>
                     </div>
