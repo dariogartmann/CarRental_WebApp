@@ -28,7 +28,7 @@ function($stateProvider, $urlRouterProvider) {
     })    
     .state('reservation_new', {
         url: '/reservations/new',
-        templateUrl: '/partials/reservation_new.html',
+        templateUrl: '/partials/reservation_choose_car.html',
         controller: 'ReservationCtrl',
         resolve: {
             postPromise: ['cars', function(cars){
@@ -36,6 +36,12 @@ function($stateProvider, $urlRouterProvider) {
             }]
         }
     })
+    .state('reservation_finish', {
+        url: '/reservation/new/:id',
+        templateUrl: '/partials/reservation_finish.html',
+        controller: 'ReservationCtrl'
+    })  
+    
     .state('usersettings', {
         url: '/usersettings',
         templateUrl: '/partials/usersettings.html',

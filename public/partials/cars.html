@@ -62,3 +62,12 @@
         </form>
     </div>
 </section>
+
+<section class="module gray">
+    <div class="container">
+        <div ng-repeat="car in cars">
+            <p>{{car.title}}</p>
+            <button ng-click="deleteCar(car)">Delete car</button>
+        </div>
+    </div>
+</section>
