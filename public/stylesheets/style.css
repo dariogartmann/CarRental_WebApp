@@ -136,7 +136,7 @@ section.module.gray {
 }
 
 section.module#login {
-    background-image: url('#/./../images/login_header.jpg');
+    background-image: url('./../images/login_header.jpg');
     background-attachment: scroll;
     -moz-background-attachment: scroll;
 
