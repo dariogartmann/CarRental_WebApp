@@ -149,6 +149,8 @@ section.module#login {
     padding: 0;
     height: calc(100% - 60px);
     width: 100%;
+    
+    display: block;
 }
 
 section.module#register input, section.module#register button {
