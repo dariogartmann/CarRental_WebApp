@@ -86,7 +86,7 @@ box-shadow: -1px 0px 28px 2px rgba(0,0,0,0.75);
     border-color: #1EAEDB;
 }
 
-#tempnew input {
+#tempnew input:not([type="checkbox"]) {
     width: 100%;
 }
 
@@ -127,28 +127,25 @@ nav div.container {
     margin-top: 60px;
 }
 
-footer {
-    color: #DBDBDB;
-    border-top: #DBDBDB;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    position: fixed;
-}
-
 section.module {
     padding: 75px 0;
 }
 
 section.module.gray {
-    background-color: #DBDBDB;
+    background-color: #F5F5F5;
 }
 
 section.module#login {
-    background-image: url("../images/login_header.jpg");
+    -moz-background-image: url("./../images/login_header.jpg");
+    background-image: url("./../images/login_header.jpg");
     background-attachment: scroll;
+    -moz-background-attachment: scroll;
+
     background-size: cover;
+    -moz-background-size: cover;
+
     background-position: center;
+    -moz-background-position: center;
     padding: 0;
     height: calc(100% - 60px);
     width: 100%;
@@ -157,3 +154,11 @@ section.module#login {
 section.module#register input, section.module#register button {
     width: 100%;
 }
+
+/* smaller than tablet */
+@media (max-width: 750px) {
+    section.module {
+        padding: 25px 0;
+    }
+}
+

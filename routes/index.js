@@ -20,15 +20,6 @@ router.get('/', function(req, res, next) {
 });
 
 
-// GET /cars
-//=================================================
-router.get('/cars', auth, function(req, res, next) {
-    Car.find(function(err, cars) {
-        if(err){ return next(err); }
-
-        res.json(cars); 
-    });
-});
 
 // POST /cars
 //=================================================
@@ -56,6 +47,31 @@ router.param('car', function(req, res, next, id) {
     return next();
   });
 });
+
+
+
+// GET /cars
+//=================================================
+router.get('/cars', auth, function(req, res, next) {
+    Car.find(function(err, cars) {
+        if(err){ return next(err); }
+
+        res.json(cars); 
+    });
+});
+
+
+// GET /cars/available
+// get all unreserved cars
+//=================================================
+router.get('/cars/available', auth, function(req, res, next) {
+    Car.find({isCurrentlyReserved: {$ne: true}}, function(err, cars) {
+        if(err) { return next(err); }
+        
+        res.json(cars);
+    });
+});
+
 
 // GET /cars/:car
 //=================================================

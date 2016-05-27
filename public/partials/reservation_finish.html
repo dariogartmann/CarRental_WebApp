@@ -1,2 +1,26 @@
-<h1>ID: {{id}}</h1>
-
+<section class="module light">
+    <div class="container">
+        <h3>New reservation</h3>
+       
+        <h5>Your car</h5>
+        
+        <p>{{car_selected.name}}</p>
+        {{id}}
+        <h5>Select duration</h5>
+        <div class="row">
+            <div class="six columns">
+                <span class="label-body">Startdate of reservation</span>
+                <input type="date" style="width: 100%;"/>
+            </div>
+            <div class="six columns">
+                <span class="label-body">End of reservation</span>
+                <input type="date" style="width: 100%;" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="twelve columns">
+                <a href="/#/dashboard" class="button button-primary u-pull-right">Reserve car!</a>
+            </div>
+        </div>   
+    </div>
+</section>

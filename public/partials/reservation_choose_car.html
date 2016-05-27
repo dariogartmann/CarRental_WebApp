@@ -16,12 +16,11 @@
                         
                         <div ng-show="{{car.isAutomatic}}"><i class="fa fa-cogs"></i> This car has automatic gear</div>   
                         
-                        <a ui-sref="reservation_finish({id: car._id})" class="button-primary">Reserve this car</a>
+                        <a ui-sref="reservation_finish({id: car._id})" class="button-primary" ng-click="setSelectedCar()">Reserve this car</a>
                     </div>
                 </div>
                 <hr/>
             </div>
         </div>
     </div>
-    
 </section>

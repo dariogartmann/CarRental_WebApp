@@ -32,7 +32,7 @@ function($stateProvider, $urlRouterProvider) {
         controller: 'ReservationCtrl',
         resolve: {
             postPromise: ['cars', function(cars){
-                return cars.getAll();
+                return cars.getAllAvailable();
             }]
         }
     })
@@ -79,7 +79,8 @@ function($stateProvider, $urlRouterProvider) {
 
 app.factory('cars', ['$http', 'auth', function($http, auth){
     var o = {
-        cars: []
+        cars: [],
+        available_cars: []
     };
     
     o.getAll = function() {
@@ -87,6 +88,14 @@ app.factory('cars', ['$http', 'auth', function($http, auth){
             headers: {Authorization: 'Bearer '+auth.getToken()}
         }).success(function(data){
             angular.copy(data, o.cars);
+        });
+    };
+    
+    o.getAllAvailable = function() {
+        return $http.get('/cars/available', {
+            headers: {Authorization: 'Bearer '+auth.getToken()}
+        }).success(function(data){
+            angular.copy(data, o.available_cars);
         });
     };
     
@@ -122,6 +131,7 @@ app.factory('cars', ['$http', 'auth', function($http, auth){
             angular.copy(data, o.users);
         });
     };
+    
     
     for(var i = 0; i < o.users.length; i++) {
         if(o.users[i].username == auth.getCurrent()) {
