@@ -156,6 +156,10 @@ section.module#register input, section.module#register button {
     width: 100%;
 }
 
+.parent {
+    position: relative;
+}
+
 /* smaller than tablet */
 @media (max-width: 750px) {
     section.module {
