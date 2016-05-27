@@ -137,12 +137,9 @@ section.module.gray {
 
 section.module#login {
     background-image: url('./../images/login_header.jpg');
-    background-attachment: scroll;
-    -moz-background-attachment: scroll;
-
+    background-attachment: fixed;
     background-size: cover;
     -moz-background-size: cover;
-
     background-position: center;
     -moz-background-position: center;
     padding: 0;
