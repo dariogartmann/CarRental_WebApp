@@ -146,8 +146,8 @@ section.module#login {
     background-position: center;
     -moz-background-position: center;
     padding: 0;
-    height: calc(100% - 60px);
-    width: 100%;
+    height: calc(100vh - 60px);
+    width: 100vw;
     
     display: block;
 }
@@ -155,11 +155,6 @@ section.module#login {
 section.module#register input, section.module#register button {
     width: 100%;
 }
-
-.parent {
-    position: relative;
-}
-
 /* smaller than tablet */
 @media (max-width: 750px) {
     section.module {
