@@ -121,7 +121,7 @@ app.factory('cars', ['$http', 'auth', function($http, auth){
         return $http.delete('/cars/' + car._id, {
             headers: {Authorization: 'Bearer '+auth.getToken()}
         }).success(function(data){
-            return data;
+            return "Deleted car " + car.title;
         });
     };
 

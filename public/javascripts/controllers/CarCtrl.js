@@ -45,8 +45,8 @@ function($scope, CarFactory){
     
     $scope.deleteCar = function(car) {
         CarFactory.delete(car).success(function(data) {
-            $scope.cars = data;
-            
+            $scope.cars = CarFactory.cars;
+            $scope.success = data;
         });
     }
 }])
