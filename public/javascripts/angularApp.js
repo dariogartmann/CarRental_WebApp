@@ -37,7 +37,7 @@ function($stateProvider, $urlRouterProvider) {
         }
     })
     .state('reservation_finish', {
-        url: '/reservation/new/:id',
+        url: '/reservations/new/:id',
         templateUrl: '/partials/reservation_finish.html',
         controller: 'ReservationCtrl'
     })  
@@ -91,6 +91,16 @@ app.factory('cars', ['$http', 'auth', function($http, auth){
         });
     };
     
+    
+    o.getCar = function(car_id) {
+        $http.get('/cars/id/'+car_id, {
+            headers: {Authorization: 'Bearer '+auth.getToken()}
+        }).success(function(data){
+            return data;
+        });
+    }
+    
+    
     o.getAllAvailable = function() {
         return $http.get('/cars/available', {
             headers: {Authorization: 'Bearer '+auth.getToken()}
@@ -120,9 +130,18 @@ app.factory('cars', ['$http', 'auth', function($http, auth){
 }])
 .factory('users', ['$http', 'auth', function($http, auth) {
     var o = {
-        users: [],
-        currentUser: null
+        users: []
     };
+    
+    o.update = function(user) {
+        return $http.put('/users', user, {
+            headers: { Authorization: 'Bearer '+auth.getToken()}
+        }).success(function(data) {
+            o.users = o.getAll();
+        });
+    };
+
+    
     
     o.getAll = function() {
         return $http.get('/users', {
@@ -131,13 +150,6 @@ app.factory('cars', ['$http', 'auth', function($http, auth){
             angular.copy(data, o.users);
         });
     };
-    
-    
-    for(var i = 0; i < o.users.length; i++) {
-        if(o.users[i].username == auth.getCurrent()) {
-            currentUser = users[i];
-        }
-    }
     
     return o;
     
@@ -160,14 +172,14 @@ app.factory('cars', ['$http', 'auth', function($http, auth){
 }])
 .factory('auth', ['$http', '$window', function($http, $window){
    var auth = {};
-
+    
     auth.saveToken = function (token){
         $window.localStorage['car-rental-token'] = token;
     };
 
     auth.getToken = function (){
         return $window.localStorage['car-rental-token'];
-    }
+    };
     
     auth.isLoggedIn = function(){
         var token = auth.getToken();
@@ -189,6 +201,18 @@ app.factory('cars', ['$http', 'auth', function($http, auth){
             return payload.username;
         }
     };
+    
+    auth.currentUserObject = function() {
+        if(auth.isLoggedIn()) {
+            return $http.get('/username/'+auth.currentUser(),{
+                headers: {Authorization: 'Bearer '+auth.getToken()}
+            }).success(function(data) {
+                console.log(data);
+               return data;
+            });
+        }  
+    };
+    
     
     auth.register = function(user){
         return $http.post('/register', user).success(function(data){

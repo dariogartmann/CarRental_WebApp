@@ -149,7 +149,8 @@ section.module#login {
     display: block;
 }
 
-section.module#register input, section.module#register button {
+section.module button,
+section.module input {
     width: 100%;
 }
 /* smaller than tablet */

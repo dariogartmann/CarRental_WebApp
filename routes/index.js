@@ -72,11 +72,22 @@ router.get('/cars/available', auth, function(req, res, next) {
     });
 });
 
+// GET /cars/id/:id
+//=================================================
+router.get('/cars/id/:id', auth, function(req, res, next) {
+    Car.findOne({id : req.id}, function(err, car) {
+        if(err) {return next(err); }
+            
+        console.log(car);
+        
+        res.json(car);
+    });
+});
 
 // GET /cars/:car
 //=================================================
 router.get('/cars/:car', auth, function(req, res, next) {
-  res.json(req.car);
+    res.json(req.car);
 });
 
 // DELETE /cars/:car

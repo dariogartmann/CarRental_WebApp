@@ -43,6 +43,7 @@ app.use('/', auth_routes);
 app.use('/', reservation_routes);
 app.use('/', user_routes);
 
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

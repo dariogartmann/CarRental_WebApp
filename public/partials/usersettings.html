@@ -1,22 +1,51 @@
 <section class="module light">
-    <div class="container">
-        <p> {{current}}</p>
-        
-        <div ng-repeat="user in users">
-            <div style="background-color: aqua; margin: 10px; float: left;">
-                <p>{{user.username}}</p>    
-                <p>{{user.name}}</p>    
-                <p>{{user.mail}}</p>    
-                <p>{{user.bankAccount}}</p>    
-                <p>{{user.address}}</p>    
-                <p>{{user.city}}</p>    
-                <p>{{user.country}}</p>    
-                <p>{{user.IsAdmin}}</p>    
+    <div class="container">        
+         <form ng-submit="updateUser(current)">
+            <div class="row">
+                <div class="twelve columns">
+                    <h3>Edit my Details</h3>
+                </div>
             </div>
-                
-            
-        </div>
-        
-        <h1>{{current}}</h1>
+            <div class="row">
+                <div class="six columns">
+                    <input type="text" placeholder="Username" ng-model="current.username" required disabled/>
+                </div>
+                <div class="six columns">
+                    <input type="password" placeholder="Password" ng-model="current.password" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="six columns">
+                    <input type="text" placeholder="Name" ng-model="current.name" required />
+                </div>
+                <div class="six columns">
+                    <input type="email" placeholder="Mailaddress" ng-model="current.mail" required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="six columns">
+                    <input type="text" placeholder="Address" ng-model="current.address" required />
+                </div>
+                <div class="three columns">
+                    <input type="text" placeholder="City" ng-model="current.city" required />
+                </div>
+                <div class="three columns">
+                    <input type="text" placeholder="Country" ng-model="current.country" required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="twelve columns">
+                    <input type="tel" placeholder="Telephone number" ng-model="current.phone"  />
+                </div>
+            </div>
+            <div class="row">
+                <div class="eight columns">
+                    <input type="text" placeholder="Credit card number" ng-model="current.bankAccount"  />
+                </div>
+                <div class="four columns">
+                    <button type="submit" class="button-primary">Update User</button>
+                </div>
+            </div>
+        </form>
     </div>
 </section>

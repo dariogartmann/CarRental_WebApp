@@ -37,13 +37,45 @@ router.param('users', function(req, res, next, id) {
   });
 });
 
+// GET /username/:username
+//=================================================
+router.get('/username/:name', auth, function(req, res, next) {
+    User.findOne({username: req.params.name}, function(err, user) {
+        if(err) {return next(err);} 
+        res.json(user);
+    });
+});
+
 // GET /users/:user
 //=================================================
 router.get('/users/:user', auth, function(req, res, next) {
   res.json(req.user);
 });
 
-// DELETE /reservations/:reservation
+
+// PUT /users
+//=================================================
+router.put('/users', auth, function(req, res, next) {
+    
+    var userToUpdate = new User(req.body);
+    
+    User.findByIdAndUpdate(userToUpdate.id, 
+                           { name: userToUpdate.name,
+                            mail: userToUpdate.mail,
+                            address: userToUpdate.address,
+                            city: userToUpdate.city,
+                            country: userToUpdate.country
+                           }, function(err, user) {
+        if (err) throw err;
+        res.send("Success");
+    });
+});
+
+
+
+
+
+// DELETE /users/:user
 //=================================================
 router.delete('/users/:user', auth, function(req, res, next) {
     var query = User.remove({ _id: req.user.id });
