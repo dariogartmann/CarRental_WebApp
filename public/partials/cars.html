@@ -1,5 +1,10 @@
 <section class="module light" id="tempnew">
     <div class="container">
+        <div ng-show="success" class="alert success">
+            <span>{{ success.message }}</span>
+        </div>
+    </div>
+    <div class="container">
         <h3>New car</h3>
         <form ng-submit="addCar()">
             <div class="row">
@@ -58,8 +63,26 @@
     <div class="container">
         <h3>Manage cars</h3>
         <div ng-repeat="car in cars">
-            <p>{{car.title}}</p>
-            <button ng-click="deleteCar(car)">Delete car</button>
+            <div class="car_container">
+                <div class="row">
+                    <div class="four columns">
+                        <img ng-src="{{car.image}}" alt="{{car.title}}"/>
+                    </div>
+                    <div class="six columns">
+                        <h4>
+                            {{car.title}} <span>{{car.pricePerDay}}.- per Day • </span><span> Fuel: {{car.fuelConsumption}}l / 100 km/h</span>
+                        </h4>
+                        <p>{{car.brand}} {{car.model}} • Seats: {{car.numberOfSeats}} • Doors: {{car.numberOfDoors}}</p>
+                        
+                        <div ng-show="{{car.isAutomatic}}"><i class="fa fa-cogs"></i> This car has automatic gear</div>   
+                        
+                    </div>
+                    <div class="two columns">
+                        <button ng-click="deleteCar(car)">Delete car</button>
+                    </div>
+                </div>
+                <hr/>
+            </div>
         </div>
     </div>
 </section>

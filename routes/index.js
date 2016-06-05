@@ -75,7 +75,7 @@ router.get('/cars/available', auth, function(req, res, next) {
 // GET /cars/id/:id
 //=================================================
 router.get('/cars/id/:id', auth, function(req, res, next) {
-    Car.findOne({id : req.id}, function(err, car) {
+    Car.findOne({id : req.params.id}, function(err, car) {
         if(err) {return next(err); }
             
         console.log(car);
@@ -95,9 +95,9 @@ router.get('/cars/:car', auth, function(req, res, next) {
 router.delete('/cars/:car', auth, function(req, res, next) {
     var query = Car.remove({ _id: req.car.id });
     if(query.exec()) {
-        res.send("success");
+        return res.status(200).json({message: 'Deleted ' + req.car.title});
     }else {
-        res.send("error");
+        return res.status(500).json({message: 'Error while deleting ' + req.car.title});
     }
     
 });

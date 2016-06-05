@@ -1,4 +1,9 @@
 <section class="module light">
+    <div class="container">
+        <div ng-show="success" class="alert success">
+            <span>{{ success.message }}</span>
+        </div>
+    </div>
     <div class="container">        
          <form ng-submit="updateUser(current)">
             <div class="row">

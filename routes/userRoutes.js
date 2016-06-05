@@ -67,7 +67,7 @@ router.put('/users', auth, function(req, res, next) {
                             country: userToUpdate.country
                            }, function(err, user) {
         if (err) throw err;
-        res.send("Success");
+        return res.status(200).json({message: 'Updated ' +user.username});
     });
 });
 
@@ -80,9 +80,9 @@ router.put('/users', auth, function(req, res, next) {
 router.delete('/users/:user', auth, function(req, res, next) {
     var query = User.remove({ _id: req.user.id });
     if(query.exec()) {
-        res.send("success");
+        return res.status(200).json({message: 'Success'});
     }else {
-        res.send("error");
+        return res.status(500).json({message: 'Error'});
     }
 });
 

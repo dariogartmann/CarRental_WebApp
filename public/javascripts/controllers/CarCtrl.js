@@ -1,8 +1,8 @@
 angular.module('carrental').controller('CarCtrl', [
 '$scope',
 'cars',
-function($scope, cars){
-    $scope.cars = cars.cars;
+function($scope, CarFactory){
+    $scope.cars = CarFactory.cars;
     
     $scope.addCar = function(){
         if(!$scope.title || $scope.title === '') { return; }
@@ -16,7 +16,7 @@ function($scope, cars){
         if(!$scope.pricePerDay || $scope.pricePerDay === '' || $scope.pricePerDay < 0) { return; }
         
         
-        cars.create({
+        CarFactory.create({
             title: $scope.title,
             pricePerDay: $scope.pricePerDay,
             image: $scope.image,
@@ -40,11 +40,13 @@ function($scope, cars){
         $scope.numberOfDoors = '';
         $scope.numberOfSeats = '';
         $scope.isAutomatic = '';
+        
     };
     
     $scope.deleteCar = function(car) {
-        cars.delete(car);
-        $scope.cars = null;
-        $scope.cars = cars.cars;
+        CarFactory.delete(car).success(function(data) {
+            $scope.cars = data;
+            
+        });
     }
 }])

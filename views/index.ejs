@@ -26,18 +26,18 @@
         <script src="/javascripts/controllers/ReservationCtrl.js"></script>
     </head>
     <body ng-app="carrental">
-            <nav ng-controller="NavCtrl">
-                <div class="container">
-                    <h4 class="u-pull-left">Car Rental Service</h4>
-                    <ul class="u-pull-right">
-                        <li ng-show="isLoggedIn()"><a>{{ currentUser() }}</a></li>
-                        <li ng-show="isLoggedIn()"><a href="/#/login" ng-click="logOut()">Log Out</a></li>
-                        <li ng-hide="isLoggedIn()"><a href="/#/login">Log In</a></li>
-                        <li ng-hide="isLoggedIn()"><a href="/#/register">Register</a></li>
-                    </ul>
-                </div>
-            </nav>
-            <div class="u-cf"></div>
+        <nav ng-controller="NavCtrl">
+            <div class="container">
+                <a href="/#/dashboard" class="u-pull-left logo">Car Rental Service</a>
+                <ul class="u-pull-right">
+                    <li ng-show="isLoggedIn()"><a>{{ currentUser() }}</a></li>
+                    <li ng-show="isLoggedIn()"><a href="/#/login" ng-click="logOut()">Log Out</a></li>
+                    <li ng-hide="isLoggedIn()"><a href="/#/login">Log In</a></li>
+                    <li ng-hide="isLoggedIn()"><a href="/#/register">Register</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="u-cf"></div>
         
         <section class="content">
             <ui-view/>

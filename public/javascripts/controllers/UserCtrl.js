@@ -1,15 +1,14 @@
-angular.module('carrental').controller('UserCtrl', ['$scope', 'users','auth', function($scope, users, Auth) {   
-   
-    $scope.users = users.users;
+angular.module('carrental').controller('UserCtrl', ['$scope', 'users','auth', '$state', function($scope, UserFactory, AuthFactory, $state) {   
     
-    Auth.currentUserObject().success(function(data) {
+    AuthFactory.currentUserObject().success(function(data) {
         $scope.current = data; 
     });
     
     $scope.updateUser = function(user) {
-        users.update(user);
+        UserFactory.update(user).success(function(data) {
+            $scope.success = data;              
+        });
     }
     
-
 }]);
 

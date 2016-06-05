@@ -121,8 +121,7 @@ app.factory('cars', ['$http', 'auth', function($http, auth){
         return $http.delete('/cars/' + car._id, {
             headers: {Authorization: 'Bearer '+auth.getToken()}
         }).success(function(data){
-            return true;
-            // TODO update after delete
+            return data;
         });
     };
 
@@ -138,6 +137,7 @@ app.factory('cars', ['$http', 'auth', function($http, auth){
             headers: { Authorization: 'Bearer '+auth.getToken()}
         }).success(function(data) {
             o.users = o.getAll();
+            return "Sucessfully updated!";
         });
     };
 
@@ -207,8 +207,7 @@ app.factory('cars', ['$http', 'auth', function($http, auth){
             return $http.get('/username/'+auth.currentUser(),{
                 headers: {Authorization: 'Bearer '+auth.getToken()}
             }).success(function(data) {
-                console.log(data);
-               return data;
+                return data;
             });
         }  
     };

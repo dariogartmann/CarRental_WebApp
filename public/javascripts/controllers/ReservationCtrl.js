@@ -1,8 +1,6 @@
 angular.module('carrental').controller('ReservationCtrl', ['$scope', '$stateParams', 'reservations', 'cars', function($scope, $stateParams, reservations, cars) {
     $scope.cars = cars.available_cars;    
-    
-    // get id of chosen car from url parameter
-    
+        
     
     $scope.setSelectedCar = function() {
         $scope.id = $stateParams.id;
