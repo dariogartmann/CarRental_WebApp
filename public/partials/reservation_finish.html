@@ -1,23 +1,22 @@
-<section class="module light" elem-ready="setSelectedCar()">
+<section class="module light">
     <div class="container">
         <form ng-submit="addReservation()">
             <h3>New reservation</h3>
 
-            <h5>Your car</h5>
+            <h5>Your car: {{car_id}}</h5>
 
-            <p>{{car_selected}}</p>
-            {{id}}
+            
             <h5>Select duration</h5>
                         
             
             <div class="row">
                 <div class="six columns">
                     <span class="label-body">Startdate of reservation</span>
-                    <input type="date" ng-model="dateFrom" style="width: 100%;"/>
+                    <input type="date" ng-model="dateFrom" required />
                 </div>
                 <div class="six columns">
                     <span class="label-body">End of reservation</span>
-                    <input type="date" ng-model="dateTo" style="width: 100%;" />
+                    <input type="date" ng-model="dateTo" required />
                 </div>
             </div>
             <div class="row">
@@ -32,5 +31,12 @@
                 </div>
             </div>
         </form>
+    </div>
+</section>
+
+<section class="module gray">
+    <h1>debug</h1>
+    <div ng-repeat="r in reservations">
+        {{r}}
     </div>
 </section>

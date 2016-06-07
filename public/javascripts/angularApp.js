@@ -41,6 +41,11 @@ function($stateProvider, $urlRouterProvider) {
         templateUrl: '/partials/reservation_finish.html',
         controller: 'ReservationCtrl'
     })  
+    .state('reservation_overview', {
+        url: '/reservations/overview',
+        templateUrl: '/partials/reservation_overview.html',
+        controller: 'ReservationCtrl'
+    })
     
     .state('usersettings', {
         url: '/usersettings',

@@ -1,0 +1,13 @@
+<section class="module light" elem-ready="setSelectedCar()">
+    <div class="container">
+        <h3>All my reservations</h3>     
+        
+        <div ng-repeat="res in myReservations">
+            <h1>{{res.car}}</h1>
+            <p>{{res.dateFrom}}</p>
+         
+            
+        </div>
+        
+    </div>
+</section>
