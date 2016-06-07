@@ -1,3 +1,7 @@
+/*
+This model represents a car in the database
+*/
+
 var mongoose = require('mongoose');
 
 var CarSchema = new mongoose.Schema({

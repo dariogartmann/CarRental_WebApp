@@ -1,19 +1,15 @@
 var express = require('express');
 var mongoose = require('mongoose');
-
 var passport = require('passport');
 var jwt = require('express-jwt');
-
 var User = mongoose.model('User');
-
 var auth = jwt({secret: 'IAMNOTSANTASECRET', userProperty: 'payload'});
-
-
 
 var router = express.Router();
 
 
 // AUTHENTICATION ROUTES
+// Routes used to authenticate users
 //=================================================
 router.post('/register', function(req, res, next){
     if(!req.body.username || !req.body.password || !req.body.name || !req.body.mail || !req.body.address || !req.body.city || !req.body.country || !req.body.bankAccount ){

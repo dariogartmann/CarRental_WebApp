@@ -1,14 +1,9 @@
 var express = require('express');
 var mongoose = require('mongoose');
-
 var passport = require('passport');
 var jwt = require('express-jwt');
-
-
 var User = mongoose.model('User');
-
 var auth = jwt({secret: 'IAMNOTSANTASECRET', userProperty: 'payload'});
-
 
 var router = express.Router();
 
@@ -70,10 +65,6 @@ router.put('/users', auth, function(req, res, next) {
         return res.status(200).json({message: 'Updated ' +user.username});
     });
 });
-
-
-
-
 
 // DELETE /users/:user
 //=================================================

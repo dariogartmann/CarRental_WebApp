@@ -1,3 +1,7 @@
+/*
+This model represents a reservation in the database
+*/
+
 var mongoose = require('mongoose');
 
 var ReservationSchema = new mongoose.Schema({

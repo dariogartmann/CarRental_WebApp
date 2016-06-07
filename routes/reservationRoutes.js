@@ -1,20 +1,13 @@
 var express = require('express');
 var mongoose = require('mongoose');
-
 var passport = require('passport');
 var jwt = require('express-jwt');
-
-
 var Car = mongoose.model('Car');
 var Reservation = mongoose.model('Reservation');
 var User = mongoose.model('User');
-
 var auth = jwt({secret: 'IAMNOTSANTASECRET', userProperty: 'payload'});
 
-
 var router = express.Router();
-
-
 
 // GET /reservations
 //=================================================
@@ -69,6 +62,5 @@ router.delete('/reservations/:reservation', auth, function(req, res, next) {
         res.send("error");
     }
 });
-
 
 module.exports = router;

@@ -1,3 +1,7 @@
+/*
+This model represents a user in the database
+*/
+
 var mongoose = require('mongoose');
 var crypto = require('crypto');
 var jwt = require('jsonwebtoken');
