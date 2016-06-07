@@ -6,7 +6,6 @@ angular.module('carrental').controller('ReservationCtrl', ['$scope', '$statePara
 
         $scope.car_selected = CarFactory.getCar($scope.id);
         console.log($scope.car_selected);
-        
     }
 
     

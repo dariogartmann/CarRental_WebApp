@@ -5,6 +5,7 @@ angular.module('carrental').controller('AuthCtrl', [
 function($scope, $state, auth){
     $scope.user = {};
 
+    // register a new user
     $scope.register = function(){
         auth.register($scope.user).error(function(error){
             $scope.error = error;
@@ -13,6 +14,7 @@ function($scope, $state, auth){
         });
     };
 
+    // try to log in new user, go to dashboard if success
     $scope.logIn = function(){
         auth.logIn($scope.user).error(function(error){
             $scope.error = error;
