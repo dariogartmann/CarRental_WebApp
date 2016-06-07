@@ -159,6 +159,15 @@ app.factory('cars', ['$http', 'auth', function($http, auth){
         reservations: []
     };
     
+    o.create = function(reservation) {
+       return $http.post('/reservations', reservation, {
+            headers: {Authorization: 'Bearer '+auth.getToken()}
+        }).success(function(data){
+            o.reservations.push(data);
+           return "Successfully created reservation!";
+        });
+    };
+    
     o.getAll = function() {
         return $http.get('/reservations', {
             headers: { Authorization: 'Bearer '+auth.getToken()}
