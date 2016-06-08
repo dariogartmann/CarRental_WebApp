@@ -14,7 +14,7 @@ angular.module('carrental').controller('ReservationCtrl', ['$scope', '$statePara
         
         // create the car and write to database
         reservations.create({
-            user: $scope.userId,
+            user: $scope.currentUser,
             car: $scope.car_id,
             status: "Created",
             isActive: true,
@@ -30,6 +30,11 @@ angular.module('carrental').controller('ReservationCtrl', ['$scope', '$statePara
         $scope.car_id = $stateParams.id;
     });
     
+    $scope.cancelReservation = function(reservation) {
+            reservations.delete(reservation).success(function(data) {
+                $scope.success = "Canceled reservation!"; 
+            });
+    }
     
     
     reservations.getAll();

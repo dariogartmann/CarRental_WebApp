@@ -1,12 +1,33 @@
 <section class="module light" elem-ready="setSelectedCar()">
     <div class="container">
+        <div ng-show="success" class="alert success">
+            <span>{{ success.message }}</span>
+        </div>
+    </div>
+    <div class="container">
         <h3>All my reservations</h3>     
         
         <div ng-repeat="res in myReservations">
-            <h1>{{res.car}}</h1>
-            <p>{{res.dateFrom}}</p>
+            <div class="row">
+                <div class="four columns">
+                        <img ng-src="{{res.car.image}}" alt="{{res.ar.title}}"/>
+                </div>
+                <div class="four columns">
+                    <h3>{{res.car.title}}</h3>
+                    <p>From {{res.dateFrom}}</p>
+                    <p>To: {{res.dateTo}}</p>
+                    <br/>
+                    <p ng-show="res.isRented">
+                        This car is rented.
+                    </p>
+                </div>
+                <div class="four columns">
+                    <button ng-click="cancelReservation(res)">Cancel reservation</button>
+                </div>
+            </div>
          
-            
+            <hr/>
+
         </div>
         
     </div>

@@ -181,6 +181,14 @@ app.factory('cars', ['$http', 'auth', function($http, auth){
         });
     };
     
+    o.delete = function(reservation) {
+           return $http.delete('/reservations/'+reservation._id, {
+            headers: { Authorization: 'Bearer '+auth.getToken()}
+        }).success(function(data) {
+            angular.copy(data, o.reservations);
+        });
+    };
+    
     return o;
     
 }])

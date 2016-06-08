@@ -12,7 +12,7 @@ var router = express.Router();
 // GET /reservations
 //=================================================
 router.get('/reservations', auth, function(req, res, next) {
-    Reservation.find(function(err, reservations) {
+    Reservation.find({}).populate('car').populate('user').exec(function(err, reservations) {
         if(err){ return next(err); }
 
         res.json(reservations); 
