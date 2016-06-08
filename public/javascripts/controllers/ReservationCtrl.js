@@ -63,7 +63,7 @@ angular.module('carrental').controller('ReservationCtrl', ['$scope', '$state', '
             $scope.success = "Reservation cancelled successfully!";    
             
             reservations.getAll();
-            $scope.myReservations = reservations.currentUserReservations;
+            $scope.myReservations = reservations.reservations;
         });
     }
     
