@@ -7,6 +7,11 @@ angular.module('carrental').controller('ReservationCtrl', ['$scope', '$state', '
     $scope.$on('$viewContentLoaded', function(){
         if($stateParams.id) {
             $scope.car_id = $stateParams.id;    
+
+            $scope.car = cars.getCar($scope.car_id).success(function(data){}).$$state;
+            
+            console.log($scope.car);
+            
         }
 
         // get user from authfactory
@@ -20,8 +25,10 @@ angular.module('carrental').controller('ReservationCtrl', ['$scope', '$state', '
             reservations.getAll();
             $scope.myReservations = reservations.reservations;        
         });
+        
+        
+
     });
-    
     
     
     // reserves a car

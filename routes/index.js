@@ -74,14 +74,12 @@ router.get('/cars/available', auth, function(req, res, next) {
 
 // GET /cars/id/:id
 //=================================================
-router.get('/cars/id/:id', auth, function(req, res, next) {
-    Car.findOne({_id : req.params.id}, function(err, car) {
-        if(err) {return next(err); }
-            
-        console.log(car);
-        
-        res.json(car);
+router.get('/cars/id/:carid', auth, function(req, res, next) {
+    Car.findOne({_id: req.params.carid}, function(err, thecar) {
+        if(err) {return next(err);} 
+        res.json(thecar);
     });
+
 });
 
 // PUT /cars

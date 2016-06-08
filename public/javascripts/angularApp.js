@@ -116,7 +116,7 @@ app.factory('cars', ['$http', 'auth', function($http, auth){
     
     
     o.getCar = function(car_id) {
-        $http.get('/cars/id/'+car_id, {
+        return $http.get('/cars/id/'+car_id, {
             headers: {Authorization: 'Bearer '+auth.getToken()}
         }).success(function(data){
             return data;
