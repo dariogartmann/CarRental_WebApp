@@ -20,7 +20,7 @@ router.get('/users', auth, function(req, res, next) {
 
 // preload reservations
 //=================================================
-router.param('users', function(req, res, next, id) {
+router.param('user', function(req, res, next, id) {
     var query = User.findById(id);
 
     query.exec(function (err, user){

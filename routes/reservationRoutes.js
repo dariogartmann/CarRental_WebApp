@@ -34,7 +34,7 @@ router.post('/reservations', auth, function(req, res, next) {
 
 // preload reservations
 //=================================================
-router.param('reservations', function(req, res, next, id) {
+router.param('reservation', function(req, res, next, id) {
     var query = Reservation.findById(id);
 
     query.exec(function (err, reservation){
@@ -65,8 +65,10 @@ router.get('/reservations/user/:userid', auth, function(req, res, next) {
 
 // DELETE /reservations/:reservation
 //=================================================
-router.delete('/reservations/:reservation', auth, function(req, res, next) {
-    var query = Reservation.remove({ _id: req.reservation});
+router.delete('/reservations/:reservation_id', auth, function(req, res, next) {
+    console.log(req.params.reservation_id);
+    var query = Reservation.remove({_id: req.params.reservation_id});
+    
     if(query.exec()) {
         res.send("success");
     }else {

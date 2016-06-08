@@ -121,7 +121,7 @@ app.factory('cars', ['$http', 'auth', function($http, auth){
         }).success(function(data){
             return data;
         });
-    }
+    };
     
     o.getAllAvailable = function() {
         return $http.get('/cars/available', {
