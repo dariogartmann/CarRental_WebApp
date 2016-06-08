@@ -55,12 +55,13 @@ router.get('/reservations/:reservation', auth, function(req, res, next) {
 // GET /reservations/user/:user
 // Get reservations for specific user
 //=================================================
-router.get('/reservations/user/:user', auth, function(req, res, next) {
-    Reservation.find({user: req.user}).populate('car').populate('user').exec(function(err, reservations) {
+router.get('/reservations/user/:userid', auth, function(req, res, next) {
+    Reservation.find({user: req.userid}).populate('car').populate('user').exec(function(err, reservations) {
         if(err){ return next(err); }
 
         res.json(reservations); 
-    });});
+    });
+});
 
 // DELETE /reservations/:reservation
 //=================================================

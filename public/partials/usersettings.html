@@ -14,10 +14,10 @@
             </div>
             <div class="row">
                 <div class="six columns">
-                    <input type="text" placeholder="Username"  ng-model="current.username" required disabled />
+                    <input type="text" placeholder="Username" required disabled />
                 </div>
                 <div class="six columns">
-                    <input type="password" placeholder="Password" ng-model="current.password" disabled />
+                    <input type="password" placeholder="Password" disabled />
                 </div>
             </div>
             <div class="row">
@@ -39,22 +39,20 @@
                     <input type="text" placeholder="Country" ng-model="current.country" required />
                 </div>
             </div>
+            <!-- No time to fix this.
             <div class="row">
                 <div class="twelve columns">
                     <input type="tel" placeholder="Telephone number" ng-model="current.phone"  />
+                     <input type="text" placeholder="Credit card number" ng-model="current.bankAccount"  />
                 </div>
             </div>
+            -->
             <div class="row">
-                <div class="eight columns">
-                    <input type="text" placeholder="Credit card number" ng-model="current.bankAccount"  />
+                <div class="nine columns">
+                    <span>Please note: you can't update your username or password!</span>
                 </div>
-                <div class="four columns">
+                <div class="three columns">
                     <button type="submit" class="button-primary">Update User</button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="twelve columns">
-                    <p>Please note: you can't update your username or password!</p>
                 </div>
             </div>
         </form>

@@ -96,6 +96,16 @@ app.factory('cars', ['$http', 'auth', function($http, auth){
         });
     };
     
+     o.reserve = function(carId) {
+        return $http.put('/cars/reserve/'+carId, {
+            headers: { Authorization: 'Bearer '+auth.getToken()}
+        }).success(function(data) {
+            o.cars = o.getAll();
+            o.available_cars = o.getAllAvailable();
+            return "Sucessfully reserved car!";
+        });
+    };
+    
     
     o.getCar = function(car_id) {
         $http.get('/cars/id/'+car_id, {
@@ -104,7 +114,6 @@ app.factory('cars', ['$http', 'auth', function($http, auth){
             return data;
         });
     }
-    
     
     o.getAllAvailable = function() {
         return $http.get('/cars/available', {

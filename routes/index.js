@@ -84,6 +84,19 @@ router.get('/cars/id/:id', auth, function(req, res, next) {
     });
 });
 
+// PUT /cars
+// reserve a car
+//=================================================
+router.put('/cars/reserve/:id', auth, function(req, res, next) {
+    
+    Car.findByIdAndUpdate(req.id, 
+                           { isCurrentlyReserved: true
+                           }, function(err, car) {
+        if (err) throw err;
+        return res.status(200).json({message: 'Updated ' +car.title});
+    });
+});
+
 // GET /cars/:car
 //=================================================
 router.get('/cars/:car', auth, function(req, res, next) {
