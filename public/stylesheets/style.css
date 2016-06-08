@@ -22,6 +22,7 @@ p {
 
 .alert {
     width: 100%;
+    max-width: 100%;
     padding: 15px 25px;
     color: #FFF;
     background-color: #BF0100;
@@ -46,8 +47,8 @@ p {
     padding: 25px;
     
     -webkit-box-shadow: -1px 0px 28px 2px rgba(0,0,0,0.75);
--moz-box-shadow: -1px 0px 28px 2px rgba(0,0,0,0.75);
-box-shadow: -1px 0px 28px 2px rgba(0,0,0,0.75);
+    -moz-box-shadow: -1px 0px 28px 2px rgba(0,0,0,0.75);
+    box-shadow: -1px 0px 28px 2px rgba(0,0,0,0.75);
 }
 .login_container input, .login_container button {
     width: 100%;
@@ -89,9 +90,6 @@ box-shadow: -1px 0px 28px 2px rgba(0,0,0,0.75);
     border-color: #1EAEDB;
 }
 
-#tempnew input:not([type="checkbox"]) {
-    width: 100%;
-}
 
 /* New Reservation
 *****************************************/
@@ -164,6 +162,16 @@ section.module button,
 section.module input {
     width: 100%;
 }
+
+section.module#userprofile a{
+    width: 100%;
+}
+
+
+input[type=checkbox] {
+    width: auto !important;
+}
+
 /* smaller than tablet */
 @media (max-width: 750px) {
     section.module {

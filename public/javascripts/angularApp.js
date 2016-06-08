@@ -57,6 +57,15 @@ function($stateProvider, $urlRouterProvider) {
             }]
         }
     })
+    .state('userprofile', {
+        url: '/userprofile',
+        templateUrl: '/partials/userprofile.html',
+        controller: 'UserCtrl',
+        resolve: {
+            postPromise: ['users', function(users){
+                return users.getAll();
+            }]
+        }    })
     .state('login', {
         url: '/login',
         templateUrl: '/partials/login.html',
@@ -154,8 +163,6 @@ app.factory('cars', ['$http', 'auth', function($http, auth){
             return "Sucessfully updated!";
         });
     };
-
-    
     
     o.getAll = function() {
         return $http.get('/users', {

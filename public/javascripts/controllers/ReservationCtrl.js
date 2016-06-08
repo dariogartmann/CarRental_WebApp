@@ -1,20 +1,37 @@
-angular.module('carrental').controller('ReservationCtrl', ['$scope', '$stateParams', 'reservations', 'cars', 'auth',function($scope, $stateParams, reservations, cars, auth) {
+angular.module('carrental').controller('ReservationCtrl', ['$scope', '$state', '$stateParams', 'reservations', 'cars', 'auth', function($scope, $state, $stateParams, reservations, cars, auth) {
     $scope.cars = cars.available_cars;    
     
-    // set ids onload
+    var currentUserId;
+    
+    // set variables onload
     $scope.$on('$viewContentLoaded', function(){
-        $scope.car_id = $stateParams.id;
-        
+        if($stateParams.id) {
+            $scope.car_id = $stateParams.id;    
+        }
+
         // get user from authfactory
         auth.currentUserObject().success(function(data) {
             $scope.currentUser = data; 
             $scope.userId = $scope.currentUser._id;
+            
+            currentUserId = $scope.currentUser._id;
         });
         
-        reservations.getForCurrentUser($scope.userId);
+        reservations.getForCurrentUser(currentUserId);
         reservations.getAll();
-        $scope.myReservations = reservations.reservations;
+        $scope.myReservations = reservations.reservations;        
     });
+    
+      auth.currentUserObject().success(function(data) {
+            $scope.currentUser = data; 
+            $scope.userId = $scope.currentUser._id;
+            
+            currentUserId = $scope.currentUser._id;
+          reservations.getForCurrentUser(currentUserId);
+        reservations.getAll();
+        $scope.myReservations = reservations.reservations;        
+        });
+        
 
     
     // reserves a car
@@ -22,7 +39,7 @@ angular.module('carrental').controller('ReservationCtrl', ['$scope', '$statePara
         
         // create the car and write to database
         reservations.create({
-            user: $scope.currentUser,
+            user: $scope.userId,
             car: $scope.car_id,
             status: "Created",
             isActive: true,
@@ -32,7 +49,12 @@ angular.module('carrental').controller('ReservationCtrl', ['$scope', '$statePara
         });
         
         // set cars currentlyReserved to true so it can't be reserved again
+        // TODO: fix dis ;-;
         cars.reserve($scope.car_id);
+        
+        
+        // go to reservation overview
+        $state.go('reservation_overview');
         
     }
     
@@ -41,7 +63,7 @@ angular.module('carrental').controller('ReservationCtrl', ['$scope', '$statePara
             $scope.success = "Reservation cancelled successfully!";    
             
             reservations.getAll();
-            $scope.myReservations = reservations.reservations;
+            $scope.myReservations = reservations.currentUserReservations;
         });
     }
     
