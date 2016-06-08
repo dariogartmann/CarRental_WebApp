@@ -56,7 +56,7 @@ router.get('/reservations/:reservation', auth, function(req, res, next) {
 // Get reservations for specific user
 //=================================================
 router.get('/reservations/user/:userid', auth, function(req, res, next) {
-    Reservation.find({user: req.userid}).populate('car').populate('user').exec(function(err, reservations) {
+    Reservation.find({user: req.params.userid}).populate('car').populate('user').exec(function(err, reservations) {
         if(err){ return next(err); }
 
         res.json(reservations); 
@@ -66,7 +66,6 @@ router.get('/reservations/user/:userid', auth, function(req, res, next) {
 // DELETE /reservations/:reservation
 //=================================================
 router.delete('/reservations/:reservation_id', auth, function(req, res, next) {
-    console.log(req.params.reservation_id);
     var query = Reservation.remove({_id: req.params.reservation_id});
     
     if(query.exec()) {

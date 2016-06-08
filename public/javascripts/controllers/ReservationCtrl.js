@@ -15,24 +15,14 @@ angular.module('carrental').controller('ReservationCtrl', ['$scope', '$state', '
             $scope.userId = $scope.currentUser._id;
             
             currentUserId = $scope.currentUser._id;
+
+            reservations.getForCurrentUser(currentUserId);
+            reservations.getAll();
+            $scope.myReservations = reservations.reservations;        
         });
-        
-        reservations.getForCurrentUser(currentUserId);
-        reservations.getAll();
-        $scope.myReservations = reservations.reservations;        
     });
     
-      auth.currentUserObject().success(function(data) {
-            $scope.currentUser = data; 
-            $scope.userId = $scope.currentUser._id;
-            
-            currentUserId = $scope.currentUser._id;
-          reservations.getForCurrentUser(currentUserId);
-        reservations.getAll();
-        $scope.myReservations = reservations.reservations;        
-        });
-        
-
+    
     
     // reserves a car
     $scope.addReservation = function() {

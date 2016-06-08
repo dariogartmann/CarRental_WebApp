@@ -75,7 +75,7 @@ router.get('/cars/available', auth, function(req, res, next) {
 // GET /cars/id/:id
 //=================================================
 router.get('/cars/id/:id', auth, function(req, res, next) {
-    Car.findOne({id : req.params.id}, function(err, car) {
+    Car.findOne({_id : req.params.id}, function(err, car) {
         if(err) {return next(err); }
             
         console.log(car);
@@ -88,11 +88,13 @@ router.get('/cars/id/:id', auth, function(req, res, next) {
 // reserve a car
 //=================================================
 router.put('/cars/reserve/:car_id', auth, function(req, res, next) {
-    Car.findOne({id: req.params.car_id}, function(err, car) {
+    console.log(req.params.car_id);
+    
+    Car.findOne({_id: req.params.car_id}, function(err, car) {
         car.isCurrentlyReserved = true;
         
         car.save();
-            return res.status(200).json({message: 'Updated ' +car.title});
+        return res.status(200).json({message: 'Updated ' +car.title});
     })
 });
 

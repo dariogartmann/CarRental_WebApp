@@ -104,8 +104,8 @@ app.factory('cars', ['$http', 'auth', function($http, auth){
         });
     };
     
-     o.reserve = function(carId) {
-        return $http.put('/cars/reserve/'+carId, {
+     o.reserve = function(car_id) {
+        return $http.put('/cars/reserve/'+car_id, {
             headers: { Authorization: 'Bearer '+auth.getToken()}
         }).success(function(data) {
             o.cars = o.getAll();
@@ -177,7 +177,7 @@ app.factory('cars', ['$http', 'auth', function($http, auth){
 .factory('reservations', ['$http', 'auth', function($http, auth) {
     var o = {
         reservations: [],
-        currentUserReservations: []
+        reservations_current_user: []
     };
     
     o.create = function(reservation) {
@@ -197,11 +197,12 @@ app.factory('cars', ['$http', 'auth', function($http, auth){
         });
     };
     
-    o.getForCurrentUser = function(userid) {
-        return $http.get('/reservations/user/'+userid, {
+    o.getForCurrentUser = function(userId) {
+        return $http.get('/reservations/user/'+userId, {
             headers: { Authorization: 'Bearer '+auth.getToken()}
         }).success(function(data) {
-            angular.copy(data, o.currentUserReservations);
+            angular.copy(data, o.reservations);
+            return "listed";
         });
     }
     
