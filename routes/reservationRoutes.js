@@ -52,10 +52,20 @@ router.get('/reservations/:reservation', auth, function(req, res, next) {
   res.json(req.reservation);
 });
 
+// GET /reservations/user/:user
+// Get reservations for specific user
+//=================================================
+router.get('/reservations/user/:user', auth, function(req, res, next) {
+    Reservation.find({user: req.user}).populate('car').populate('user').exec(function(err, reservations) {
+        if(err){ return next(err); }
+
+        res.json(reservations); 
+    });});
+
 // DELETE /reservations/:reservation
 //=================================================
 router.delete('/reservations/:reservation', auth, function(req, res, next) {
-    var query = Reservation.remove({ _id: req.reservation.id });
+    var query = Reservation.remove({ _id: req.reservation});
     if(query.exec()) {
         res.send("success");
     }else {

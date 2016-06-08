@@ -1,16 +1,14 @@
 angular.module('carrental').controller('ReservationCtrl', ['$scope', '$stateParams', 'reservations', 'cars', 'auth',function($scope, $stateParams, reservations, cars, auth) {
     $scope.cars = cars.available_cars;    
     
-
-    // reserves a car
-    $scope.addReservation = function() {
-        
-        // get user from authfactory
-        auth.currentUserObject().success(function(data) {
+    // get user from authfactory
+    auth.currentUserObject().success(function(data) {
             $scope.currentUser = data; 
             $scope.userId = $scope.currentUser._id;
-        });
-        
+    });
+    
+    // reserves a car
+    $scope.addReservation = function() {
         
         // create the car and write to database
         reservations.create({
@@ -31,13 +29,17 @@ angular.module('carrental').controller('ReservationCtrl', ['$scope', '$statePara
     });
     
     $scope.cancelReservation = function(reservation) {
-            reservations.delete(reservation).success(function(data) {
-                $scope.success = "Canceled reservation!"; 
-            });
+        reservations.delete(reservation).success(function(data) {
+            $scope.success = "Reservation cancelled successfully!"; 
+            
+            // update view
+            reservations.getForCurrentUser($scope.userId)
+            $scope.myReservations = reservations.currentUserReservations;
+        });
     }
     
     
-    reservations.getAll();
-    $scope.myReservations = reservations.reservations;
+    reservations.getForCurrentUser($scope.userId)
+    $scope.myReservations = reservations.currentUserReservations;
     
 }]);

@@ -161,7 +161,8 @@ app.factory('cars', ['$http', 'auth', function($http, auth){
 }])
 .factory('reservations', ['$http', 'auth', function($http, auth) {
     var o = {
-        reservations: []
+        reservations: [],
+        currentUserReservations: []
     };
     
     o.create = function(reservation) {
@@ -181,11 +182,20 @@ app.factory('cars', ['$http', 'auth', function($http, auth){
         });
     };
     
+    o.getForCurrentUser = function(userid) {
+        return $http.get('/reservations/user/'+userid, {
+            headers: { Authorization: 'Bearer '+auth.getToken()}
+        }).success(function(data) {
+            angular.copy(data, o.currentUserReservations);
+        });
+    }
+    
     o.delete = function(reservation) {
            return $http.delete('/reservations/'+reservation._id, {
             headers: { Authorization: 'Bearer '+auth.getToken()}
         }).success(function(data) {
             angular.copy(data, o.reservations);
+            return "Reservation cancelled successfully!";
         });
     };
     
