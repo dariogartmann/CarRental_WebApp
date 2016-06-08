@@ -14,4 +14,18 @@ To start cd to root and run
 npm start
 ```
 
+## Digitalocean Droplet
+
+Github repository is cloned under /opt/mean
+
+```
+git pull to pull from Github repo
+```
+
+To run as daemon run
+
+```
+pm2 start *path_to_/bin/www.js*
+```
+
 
